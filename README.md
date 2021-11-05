@@ -1,4 +1,4 @@
-# github-branch-protection
+# Github Branch Protection
 
 GitHub has a powerful API that enables developers to easily access GitHub data.
 
