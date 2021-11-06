@@ -10,7 +10,7 @@ def webhook():
 
     # Here I am creating a dictionary out of the json received from the request
     request_body = request.get_json()
-    token = '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' #Add your github personal auth token here. Removed each time.
+    token = '' #Add your github personal auth token here. Removed each time.
     print(request_body)
 
     # Here we are assigning variables to the dictionary entries we need
