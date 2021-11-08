@@ -15,7 +15,7 @@ Please create a simple web service that listens for organization events to know 
 
 ## Setup
 ### Ngrok Web Server
-To run this Web Server in your organization you will need a few things. First head to [ngrok's](https://ngrok.com/download) website to download this free and simple application hosting web service. Change your directory to this repository once downloaded and run the application with 
+To run this Web Server in your organization you will need a few things. First, change into the directory of the application and install the requirements.txt with this command: ```pip install -r /path/to/requirements.txt```. Then head to [ngrok's](https://ngrok.com/download) website to download this free and simple application hosting web service. Change your directory to this repository once downloaded and run the application with 
 ```python server.py```
 The [documentation for Ngrok](https://ngrok.com/docs) is excellent and once ngrok is running, it's a one line command to have your app up in the web: 
 ```ngrok http 5000```
