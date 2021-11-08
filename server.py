@@ -25,14 +25,29 @@ def webhook():
         # print(request.json)
         headers = {'Accept': 'application/vnd.github.v3+json'}
         # Here is the json that specifies what type of branch protection we want to apply.
-        json_data = '{"required_status_checks":{"strict":true,"contexts":["contexts"]},"enforce_admins":null,"required_pull_request_reviews":null,"restrictions":null}'
-
+        branch_protection_payload = {
+            "required_status_checks": {
+                "strict": True,
+                "contexts": ["contexts"]
+            },
+            "enforce_admins": None,
+            "required_pull_request_reviews": None,
+            "restrictions": None
+        }
 
         # Below you can see we use the repo variable that was created above to pass the repository that was just created
         payload_url = 'https://api.github.com/repos/abel-org/' + repo + '/branches/main/protection' # Change to master for Official Topps
 
         print(payload_url)
-        response = requests.put(payload_url, headers=headers, data=json_data, auth=(user, token))
+        try:
+            response = requests.put(
+                payload_url,
+                headers=headers,
+                data=branch_protection_payload,
+                auth=(user, token)
+            )
+        except requests.exceptions.HTTPError as e:
+            exit(e.response.text)
         print(response)
 
 
@@ -43,15 +58,21 @@ def webhook():
         body = "@abelberhane"
         # Once I have a title and a body I store them into item data and encode it into json
         item_data = {'title': title, 'body': body}
-        json_data = json.dumps(item_data).encode("utf-8")
 
 
         # These are the default headers required per the documentation below:
         # https://docs.github.com/en/rest/reference/issues#create-an-issue
         headers = {'Accept': 'application/vnd.github.v3+json'}
         # Here I send the request to post to the payload URL with teh appropriate headers and our JSON
-        response = requests.post(payload_url, headers=headers, data=json_data, auth=(user, token))
-        return 'success', 200
+        try:
+            response = requests.post(
+                payload_url,
+                headers=headers,
+                data=json.dumps(item_data).encode("utf-8"),
+                auth=(user, token))
+            return 'success', 200
+        except requests.exceptions.HTTPError as e:
+            exit(e.response.text)
     else:
         print("This is not expected")
         abort(400)
