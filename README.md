@@ -29,7 +29,7 @@ The last setup step that you will need to complete within Github is to head to y
 -----------
 
 ## Web Service
-Through Github's Webhooks documentation, specifically in the [Repository](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository) section, it specifies which actions can cause an event. Right away we see that created is the first one and the one that we need.I allow my web server at the address /webhook to accept only POST methods. If the request is a POST method you are allowed to move on to the next section of the code which is protecting the main branch. 
+Through Github's Webhooks documentation, specifically in the [Repository](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#repository) section, it specifies which actions can cause an event. Right away we see that created is the first action in the list and the one that we need. I have setup my web server at that address /webhook to accept only POST methods. If the request is a POST method you are allowed to move on to the next section of the code which is protecting the main branch. 
 
 
 ## Protecting the branch
