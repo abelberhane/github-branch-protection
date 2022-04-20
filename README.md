@@ -1,4 +1,4 @@
-# Github Branch Protection
+# GitHub Branch Protection
 
 GitHub has a powerful API that enables developers to easily access GitHub data.
 
@@ -15,16 +15,16 @@ Please create a simple web service that listens for organization events to know 
 
 ## Setup
 ### Ngrok Web Server
-To run this Web Server in your organization you will need a few things. First, change into the directory of the application and install the requirements.txt with this command: ```pip install -r /path/to/requirements.txt```. Then head to [ngrok's](https://ngrok.com/download) website to download this free and simple application hosting web service. Change your directory to this repository once downloaded and run the application with 
+To run this Web Server in your organization you will need a few things. First, change into the directory of the application and install the requirements.txt with this command: ```pip install -r /path/to/requirements.txt```. Then head to [ngrok's](https://ngrok.com/download) site to download this free and simple application hosting web service. Change your directory to this repository once downloaded and run the application with 
 ```python server.py```
 The [documentation for Ngrok](https://ngrok.com/docs) is excellent and once ngrok is running, it's a one line command to have your app up in the web: 
 ```ngrok http 5000```
-Take the URL that is provided in the terminal next to Forwarding and save it for our next step in github. It should look like this "http://1058-66-115-182-68.ngrok.io". Helpful tip, the free tier of ngrok only promises you that URL for 2 hours. Keep that in mind if this is meant for production. 
+Take the URL that is provided in the terminal next to Forwarding and save it for our next step in GitHub. It should look like this "http://1058-66-115-182-68.ngrok.io". Helpful tip, the free tier of ngrok only promises you that URL for 2 hours. Keep that in mind if this is meant for production. 
 
-### Github
+### GitHub
 You will first need to have created an Organization within Github, and then create a Webhook. When creating the Webhook, Payload URL is going to be the URL that was provided to us in the ngrok application but also adding /webhook for our application route, it will look something like this http://d79d-66-115-182-83.ngrok.io/webhook. Change Content type to "application/json" and then make sure to select the events that you would like the webhook to trigger. Perhaps you want it to only act on repository creations or branches being deleted, here is where you select it. 
 
-The last setup step that you will need to complete within Github is to head to your personal settings, developer settings, and then Personal access tokens. You will need to generate a new token and save the output in a secure location. This token is what provides authorization in my script when I attempt to protect the main branch and issue a notification once its complete. In the server.py file you will see a location for you to enter the token that you have created. 
+The last setup step that you will need to complete within GitHub is to head to your personal settings, developer settings, and then Personal access tokens. You will need to generate a new token and save the output in a secure location. This token is what provides authorization in my script when I attempt to protect the main branch and issue a notification once its complete. In the server.py file you will see a location for you to enter the token that you have created. 
 
 -----------
 
@@ -40,7 +40,7 @@ At this point in the code we know that the method is indeed a POST request and b
 Once the branch is protected in that same if statement, I move on to sending the notification that its been protected. The logic is very similar to what I used with protecting the main branch. I generate the URL and encode the json data needed to send the POST request per the [documentation for creating an issue](https://docs.github.com/en/rest/reference/issues#create-an-issue) and the issue is created. I tagged myself in the body and chose to leave a message in the title letting me know that the branch protection worked. 
 
 ## Common Issues
-If you are unable to get the issue created, confirm that you have indeed added a working PAT token. This is usually why this is failing. I will soon create a github secret on this repository and put my PAT token there. 
+If you are unable to get the issue created, confirm that you have indeed added a working PAT token. This is usually why this is failing. I will soon create a GitHub secret on this repository and put my PAT token there. 
 
 ----------------------
 *Sources*:
@@ -54,4 +54,4 @@ If you are unable to get the issue created, confirm that you have indeed added a
   * https://ngrok.com/docs
 ----------------------
 
-Github Organization - https://github.com/abel-org
+GitHub Organization - https://github.com/abel-org
