@@ -39,6 +39,9 @@ At this point in the code we know that the method is indeed a POST request and b
 ## Issuing a notification
 Once the branch is protected in that same if statement, I move on to sending the notification that its been protected. The logic is very similar to what I used with protecting the main branch. I generate the URL and encode the json data needed to send the POST request per the [documentation for creating an issue](https://docs.github.com/en/rest/reference/issues#create-an-issue) and the issue is created. I tagged myself in the body and chose to leave a message in the title letting me know that the branch protection worked. 
 
+## Common Issues
+If you are unable to get the issue created, confirm that you have indeed added a working PAT token. This is usually why this is failing. I will soon create a github secret on this repository and put my PAT token there. 
+
 ----------------------
 *Sources*:
   * https://www.youtube.com/watch?v=HQLRPWi2SeA&t=75s
